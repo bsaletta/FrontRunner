@@ -45,7 +45,7 @@ if($signup===TRUE){
 	echo ".";
 	$uname=$_POST["?uname"];
 	echo ".";
-	$result=mysqli_querry($con,"SELECT * FROM `UserData` WHERE `Username`='".$uname."'");
+	$result=mysqli_query($con,"SELECT * FROM `UserData` WHERE `Username`='".$uname."'");
 	echo ".";
 	if($result==FALSE){
 		error("Wrong Username");
