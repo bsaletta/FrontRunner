@@ -3,20 +3,16 @@ $con=mysqli_connect("localhost","root","mfd-2hd","Users");
 if(mysqli_connect_errno()){
 	error("Failed to connect to MySQL ".mysqli_connect_error());
 }
-echo "Connected to MySQL";
 if($_POST["?uname"]=="" || $_POST["pwd"]==""){
 	$signup=true;
-	echo "Signing Up";
 }else{
 	$signup=false;
-	echo "Logging in";
 }
 if($signup===TRUE){
 	$suname=$_POST["?suname"];
 	$email=$_POST["email"];
 	if($_POST["sup1"]==$_POST["sup2"]){
 		$pwd=$_POST["sup1"];
-		echo "Passwords good";
 	}else{
 		error("Missmached Passwords");
 	}
@@ -31,7 +27,6 @@ if($signup===TRUE){
 				//TODO: Design message in file and load it here, the below is strictly for testing
 				$message="<html><a href='192.168.1.72/verify.php?hash=$hash'>192.168.1.72/verify.php?hash=$hash</a></html>";
 				mail($email,"Verify your FrontRunner Account",$message);
-				echo "Values inserted";
 			}else{
 				error("Could not Log Values into Database");
 			}
@@ -42,27 +37,20 @@ if($signup===TRUE){
 		error("Username already exists.");
 	}
 }else{
-	echo ".";
 	$uname=$_POST["?uname"];
-	echo ".";
 	$result=mysqli_query($con,"SELECT * FROM `UserData` WHERE `Username`='".$uname."'");
-	echo ".";
 	if($result==FALSE){
 		error("Wrong Username");
 	}else{
-		echo "."; 
 	$row=mysqli_fetch_array($result);
-	echo ".";
 	if($row["Verified"]==0){
 		error("Unverified Email");
 	}else{
-		echo ".";
 		if($row["Password"]==$_POST["pwd"]){
-			echo ".";
-			$_SESSION["User"]=$uname;
+			$expire=time()+60*60*24;
+			setcookie("User",$uname,$expire);
 		}else{
 			if(isset($_SESSION["Attempts"])){
-				echo ".";
 				$_SESSION["Attempts"]+=1;
 			}
 			$_SESSION["Attempts"]=1;

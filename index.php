@@ -16,8 +16,8 @@ if(!isset($_SESSION["exists"])){
     <div id="header">
       <h1 style="text-align:center">FrontRunner Projects</h1>
       <a onClick="showLogin()" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)" id="loginSignup">
-      	<?php if(isset($_SESSION['User'])){
-        	echo "Logged in as ".$_SESSION['User'];
+      	<?php if(isset($_COOKIE['User'])){
+        	echo "Logged in as ".$_COOKIE['User'];
         	}else{
         		echo "Login/SignUp";
         	}  ?> </a>
