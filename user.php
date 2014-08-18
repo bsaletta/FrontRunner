@@ -48,7 +48,7 @@ if($signup){
 		error("Wrong Username");
 	}else{ 
 	$row=mysqli_fetch_array($result);
-	if(!$row["Verified"]){
+	if($row["Verified"]==0){
 		error("Unverified Email");
 	}else{
 		if($row["Password"]==$_POST["pwd"]){

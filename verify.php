@@ -11,7 +11,7 @@ if($hash!=""){
 		$uname=$row["Username"];
 		$pwd=$row["Password"];
 		$email=$row["Email"];	
-		$result=mysqli_query($link,"INSERT INTO `UserData` VALUES ('$uname','$pwd','$email','true')");
+		$result=mysqli_query($link,"INSERT INTO `UserData` VALUES ('$uname','$pwd','$email',true)");
 		if($result){
 			$_SESSION["User"]=$uname;
 			echo "Verified!";

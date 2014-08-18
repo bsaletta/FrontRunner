@@ -49,6 +49,7 @@ function ajax(cmd,args){
 			var string="?uname="+uname+"&pwd="+pwd;
 			xmlhttp.send(string);
 			xmlhttp.onreadystatechange=function(){ajaxResponseToError(xmlhttp);};
+			hideLogin();
 		break;
 		case 1:
 			xmlhttp.open("POST","user.php",true);
@@ -60,6 +61,7 @@ function ajax(cmd,args){
 			var string="?suname="+suname+"&email="+email+"&sup1="+sup1+"&sup2="+sup2;
 			xmlhttp.send(string);
 			xmlhttp.onreadystatechange=function(){ajaxResponseToError(xmlhttp);};
+			hideLogin();
 		break;
 		default:
 			error("Unhandled AJAX case");
