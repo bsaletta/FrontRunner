@@ -33,3 +33,50 @@ function toggleSignUp(){
        element.style.height="0"; 
     }
 }
+function ajax(cmd,args){
+	var xmlhttp;
+	if(window.XMLHttpReqest){
+		xmlhttp=new XMLHttpRequest();
+	}else{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	switch(cmd){
+		case 0:
+			xmlhttp.open("POST","users.php",true);
+			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			var uname=document.getElementById('uname').value;
+			var pwd=document.getElementById('pwd').value;
+			var string="uname="+uname+"&pwd="+pwd;
+			xmlhttp.send(string);
+			error(ajaxResponse(xmlhttp));
+		break;
+		case 1:
+			xmlhttp.open("POST","users.php",true);
+			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			var suname=document.getElementById("suname").value;
+			var email=document.getElementById("email").value;
+			var sup1=document.getElementById("sup1").value;
+			var sup2=document.getElementById("sup2").value;
+			var string="";
+			xmlhttp.send(string);
+			error(ajaxResponse(xmlhttp));
+		break;
+		default:
+			error("Unhandled AJAX case");
+	}
+}
+function ajaxResponse(xmlhttp){
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readystate==4 && xml.status==200){
+					return xmlhttp.responseText;
+				}else if(xmlhttp.status==404 && xmlhttp.readystate==4){
+					error("404: Could not locate request");
+				}
+			};
+}
+function error(issue){
+	if(issue!=""){
+		var element=document.getElementById('error');
+		element.innerHTML+=new Date().getTime()+"   "+issue+"<br>";
+	}
+}

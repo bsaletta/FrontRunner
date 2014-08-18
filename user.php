@@ -20,13 +20,13 @@ if($signup){
 	}else{
 		error("Missmached Passwords");
 	}
-	$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Username`=$suname");
+	$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Username`='$suname'");
 	if(!$result){
 		$email=$_POST["email"];
-		$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Email`=$suname");
+		$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Email`='$suname'");
 		if(!$result){
 			$hash=hash("md5",Math.rand(0, 100));
-			$result=mysqli_query($con,"INSERT INTO `TempUser` VALUES ($suname,$pwd,$email,$hash)");
+			$result=mysqli_query($con,"INSERT INTO `TempUser` VALUES ('$suname','$pwd','$email','$hash');");
 			if($result){
 				//TODO: Design message in file and load it here, the below is strictly for testing
 				$message="<html><a href='192.168.1.72/verify.php?hash=$hash'>192.168.1.72/verify.php?hash=$hash</a></html>";
@@ -43,7 +43,7 @@ if($signup){
 	}
 }else{
 	$uname=$_POST["uname"];
-	$result=mysqli_querry($con,"SELECT * FROM `UserData` WHERE `Username`=$uname");
+	$result=mysqli_querry($con,"SELECT * FROM `UserData` WHERE `Username`='$uname'");
 	if(!$result){
 		error("Wrong Username");
 	} 

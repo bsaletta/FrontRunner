@@ -5,14 +5,15 @@ if($hash!=""){
 	if(mysqli_connect_errno()){
 	error("Failed to connect to MySQL ".mysqli_connect_error());
 	}
-	$result=mysqli_query($link,"SELECT * FROM `TempUser` WHERE `Hash`=$hash");
+	$result=mysqli_query($link,"SELECT * FROM `TempUser` WHERE `Hash`='$hash'");
 	if($result){
 		$row=mysqli_fetch_array($result);
 		$uname=$row["Username"];
 		$pwd=$row["Password"];
 		$email=$row["Email"];	
-		$result=mysqli_query($link,"INSERT INTO `UserData` VALUES ($uname,$pwd,$email,true)");
+		$result=mysqli_query($link,"INSERT INTO `UserData` VALUES ('$uname','$pwd','$email','true')");
 		if($result){
+			$_SESSION["User"]=$uname;
 			echo "Verified!";
 		}else{
 			echo "Could not Verify...";
