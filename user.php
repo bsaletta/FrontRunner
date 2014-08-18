@@ -46,12 +46,12 @@ if($signup){
 	$result=mysqli_querry($con,"SELECT * FROM `UserData` WHERE `Username`=".$uname);
 	if(!$result){
 		error("Wrong Username");
-	} 
+	}else{ 
 	$row=mysqli_fetch_array($result);
 	if(!$row["Verified"]){
 		error("Unverified Email");
 	}else{
-		if($row["Password"==$_POST["pwd"]]){
+		if($row["Password"]==$_POST["pwd"]){
 			$_SESSION["User"]=$uname;
 		}else{
 			if(isset($_SESSION["Attempts"])){
@@ -61,8 +61,8 @@ if($signup){
 			error("Wrong Password");
 		}
 	}
+	}
 }
-
 function error($error){
 	echo $error;
 	mysqli_close($con);
