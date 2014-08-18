@@ -23,7 +23,7 @@ if(!isset($_SESSION["exists"])){
         	}  ?> </a>
     </div>
         <ul id="navigationBar">
-            <li><a class="navLink" href="drive:drive/root/FrontRunner/index.html" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">Home</a></li>
+            <li><a class="navLink" href="index.php" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">Home</a></li>
             <li><a class="navLink" href="" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">Projects</a></li>
             <li><a class="navLink" href="" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">About</a></li>
         </ul>
@@ -38,7 +38,8 @@ if(!isset($_SESSION["exists"])){
             <td>Password:</td><td><input type="password" id="pwd"></td>
         </tr>
         </table>
-        <input type="button" onclick="ajax(0,null)" value="Login"><a onClick="toggleSignUp()" style="text-align:right; display:block">Sign Up</a>
+        <!-- TODO: move all style commands to the mainstyle.css file -->
+        <input type="button" onclick="ajax(0,null)" value="Login"><a onClick="toggleSignUp()" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)" style="text-align:center; display:block, width:100px; border: 2px solid black; border-radius:5px;">Sign Up</a>
         </form>
        
         <form id="signup">

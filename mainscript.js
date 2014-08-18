@@ -35,44 +35,42 @@ function toggleSignUp(){
 }
 function ajax(cmd,args){
 	var xmlhttp;
-	if(window.XMLHttpReqest){
+	if(window.XMLHttpRequest){
 		xmlhttp=new XMLHttpRequest();
 	}else{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	switch(cmd){
 		case 0:
-			xmlhttp.open("POST","users.php",true);
+			xmlhttp.open("POST","user.php",true);
 			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			var uname=document.getElementById('uname').value;
 			var pwd=document.getElementById('pwd').value;
-			var string="uname="+uname+"&pwd="+pwd;
+			var string="?uname="+uname+"&pwd="+pwd;
 			xmlhttp.send(string);
-			error(ajaxResponse(xmlhttp));
+			xmlhttp.onreadystatechange=ajaxResponseToError(xmlhttp);
 		break;
 		case 1:
-			xmlhttp.open("POST","users.php",true);
+			xmlhttp.open("POST","user.php",true);
 			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			var suname=document.getElementById("suname").value;
 			var email=document.getElementById("email").value;
 			var sup1=document.getElementById("sup1").value;
 			var sup2=document.getElementById("sup2").value;
-			var string="";
+			var string="?suname="+suname+"&email="+email+"&sup1="+sup1+"&sup2="+sup2;
 			xmlhttp.send(string);
-			error(ajaxResponse(xmlhttp));
+			xmlhttp.onreadystatechange=ajaxResponseToError(xmlhttp);
 		break;
 		default:
 			error("Unhandled AJAX case");
 	}
 }
-function ajaxResponse(xmlhttp){
-	xmlhttp.onreadystatechange=function(){
+function ajaxResponseToError(xmlhttp){
 		if(xmlhttp.readystate==4 && xml.status==200){
-					return xmlhttp.responseText;
+					 error(xmlhttp.responseText);
 				}else if(xmlhttp.status==404 && xmlhttp.readystate==4){
 					error("404: Could not locate request");
 				}
-			};
 }
 function error(issue){
 	if(issue!=""){
