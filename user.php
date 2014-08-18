@@ -4,7 +4,7 @@ if(mysqli_connect_errno()){
 	error("Failed to connect to MySQL ".mysqli_connect_error());
 }
 echo "Connected to MySQL";
-if($_POST["uname"]=="" || $_POST["pwd"]==""){
+if($_POST["?uname"]=="" || $_POST["pwd"]==""){
 	$signup=true;
 	echo "Signing Up";
 }else{
@@ -12,7 +12,7 @@ if($_POST["uname"]=="" || $_POST["pwd"]==""){
 	echo "Logging in";
 }
 if($signup){
-	$suname=$_POST["suname"];
+	$suname=$_POST["?suname"];
 	$email=$_POST["email"];
 	if($_POST["sup1"]==$_POST["sup2"]){
 		$pwd=$_POST["sup1"];
