@@ -50,6 +50,13 @@ li{
     margin-left:auto;
     margin-right:auto;
 }
+#signupToggle{
+	text-align:center; 
+	display:block;
+	width:100px; 
+	border: 2px solid black; 
+	border-radius:5px;
+}
 #signup{
     visibility:hidden;
     width:0;
@@ -58,7 +65,7 @@ li{
 #loginSignup{
     display:block;
     position:relative;
-    width:100px;
+    width:auto;
     background:white;
     border:2px solid black;
     border-radius:15px;

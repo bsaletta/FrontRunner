@@ -39,7 +39,7 @@ if(!isset($_SESSION["exists"])){
         </tr>
         </table>
         <!-- TODO: move all style commands to the mainstyle.css file -->
-        <input type="button" onclick="ajax(0,null)" value="Login"><a onClick="toggleSignUp()" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)" style="text-align:center; display:block, width:100px; border: 2px solid black; border-radius:5px;">Sign Up</a>
+        <input type="button" onclick="ajax(0,null)" value="Login"><span id="signupToggle" onClick="toggleSignUp()" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)" style="">Sign Up</span>
         </form>
        
         <form id="signup">
