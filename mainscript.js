@@ -48,7 +48,7 @@ function ajax(cmd,args){
 			var pwd=document.getElementById('pwd').value;
 			var string="?uname="+uname+"&pwd="+pwd;
 			xmlhttp.send(string);
-			xmlhttp.onreadystatechange=ajaxResponseToError(xmlhttp);
+			xmlhttp.onreadystatechange=function(){ajaxResponseToError(xmlhttp);};
 		break;
 		case 1:
 			xmlhttp.open("POST","user.php",true);
@@ -59,16 +59,16 @@ function ajax(cmd,args){
 			var sup2=document.getElementById("sup2").value;
 			var string="?suname="+suname+"&email="+email+"&sup1="+sup1+"&sup2="+sup2;
 			xmlhttp.send(string);
-			xmlhttp.onreadystatechange=ajaxResponseToError(xmlhttp);
+			xmlhttp.onreadystatechange=function(){ajaxResponseToError(xmlhttp);};
 		break;
 		default:
 			error("Unhandled AJAX case");
 	}
 }
 function ajaxResponseToError(xmlhttp){
-		if(xmlhttp.readystate==4 && xml.status==200){
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){
 					 error(xmlhttp.responseText);
-				}else if(xmlhttp.status!=200 && xmlhttp.readystate==4){
+				}else if(xmlhttp.status!=200 && xmlhttp.readyState==4){
 					error("404: Could not locate request");
 				}
 }

@@ -1,6 +1,4 @@
 <?php
-echo "connected";
-/*
 $con=mysqli_connect("localhost","root","mfd-2hd","Users");
 if(mysqli_connect_errno()){
 	error("Failed to connect to MySQL ".mysqli_connect_error());
@@ -69,5 +67,5 @@ function error($error){
 	echo $error;
 	mysqli_close($con);
 	exit;
-}*/
+}
 ?>
