@@ -69,7 +69,7 @@ function ajaxResponseToError(xmlhttp){
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
 					 error(xmlhttp.responseText);
 				}else if(xmlhttp.status!=200 && xmlhttp.readyState==4){
-					error("404: Could not locate request");
+					error(xmlhttp.status+": Could not locate request");
 				}
 }
 function error(issue){
