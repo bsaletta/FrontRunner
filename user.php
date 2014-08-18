@@ -21,9 +21,12 @@ if($signup){
 	if(!$result){
 		$email=$_POST["email"];
 		$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Email`=$suname");
-		if(!result){
+		if(!$result){
 			$hash=hash("md5",Math.rand(0, 100));
-			//TODO: Insert into Table here
+			$result=mysqli_query($con,"INSERT INTO `TempUser` VALUES ($suname,$pwd,$email,$hash)");
+			//TODO: Design message in file and load it here, the below is strictly for testing
+			$message="<html><a href='192.168.1.72/verify.php?hash=$hash'>192.168.1.72/verify.php?hash=$hash</a></html>";
+			mail($email,"Verify your FrontRunner Account",$message);
 		}else{
 			error("Email already exists");
 		}
@@ -33,6 +36,7 @@ if($signup){
 }else{
 	$uname=$_POST["uname"];
 	$result=mysqli_querry($con,"SELECT * FROM `UserData` WHERE `Username`=$uname");
+	if($result) error("Wrong Username");
 	$row=mysqli_fetch_array($result);
 	if(!$row["Verified"]){
 		error("Unverified Email");
