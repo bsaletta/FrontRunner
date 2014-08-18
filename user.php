@@ -11,7 +11,7 @@ if($_POST["?uname"]=="" || $_POST["pwd"]==""){
 	$signup=false;
 	echo "Logging in";
 }
-if($signup){
+if($signup===TRUE){
 	$suname=$_POST["?suname"];
 	$email=$_POST["email"];
 	if($_POST["sup1"]==$_POST["sup2"]){
@@ -42,19 +42,27 @@ if($signup){
 		error("Username already exists.");
 	}
 }else{
+	echo ".";
 	$uname=$_POST["?uname"];
+	echo ".";
 	$result=mysqli_querry($con,"SELECT * FROM `UserData` WHERE `Username`='".$uname."'");
+	echo ".";
 	if($result==FALSE){
 		error("Wrong Username");
-	}else{ 
+	}else{
+		echo "."; 
 	$row=mysqli_fetch_array($result);
+	echo ".";
 	if($row["Verified"]==0){
 		error("Unverified Email");
 	}else{
+		echo ".";
 		if($row["Password"]==$_POST["pwd"]){
+			echo ".";
 			$_SESSION["User"]=$uname;
 		}else{
 			if(isset($_SESSION["Attempts"])){
+				echo ".";
 				$_SESSION["Attempts"]+=1;
 			}
 			$_SESSION["Attempts"]=1;
