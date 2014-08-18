@@ -68,13 +68,15 @@ function ajax(cmd,args){
 function ajaxResponseToError(xmlhttp){
 		if(xmlhttp.readystate==4 && xml.status==200){
 					 error(xmlhttp.responseText);
-				}else if(xmlhttp.status==404 && xmlhttp.readystate==4){
+				}else if(xmlhttp.status!=200 && xmlhttp.readystate==4){
 					error("404: Could not locate request");
 				}
 }
 function error(issue){
+	var element=document.getElementById('error');
 	if(issue!=""){
-		var element=document.getElementById('error');
 		element.innerHTML+=new Date().getTime()+"   "+issue+"<br>";
+	}else{
+		element.innerHTML+=new Date().getTime()+"   "+"Blank Problem"+"<br>";
 	}
 }
