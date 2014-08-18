@@ -23,6 +23,11 @@ if(!isset($_SESSION["exists"])){
         	}  ?> </a>
     </div>
         <ul id="navigationBar">
+        	<!--TODO: Add functionality to the links
+        		Projects: dropdown list of projects, check for login first
+        		About: Generate a bio and a full about page
+        		See if you need any more links or anything like that
+        	-->
             <li><a class="navLink" href="index.php" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">Home</a></li>
             <li><a class="navLink" href="" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">Projects</a></li>
             <li><a class="navLink" href="" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">About</a></li>
