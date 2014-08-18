@@ -20,10 +20,10 @@ if($signup){
 	}else{
 		error("Missmached Passwords");
 	}
-	$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Username`=".$suname);
+	$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Username`='".$suname."'");
 	if(!$result){
 		$email=$_POST["email"];
-		$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Email`=".$email);
+		$result=mysqli_query($con, "SELECT * FROM `UserData` WHERE `Email`='".$email."'");
 		if(!$result){
 			$hash=hash("md5",Math.rand(0, 100));
 			$result=mysqli_query($con,"INSERT INTO `TempUser` VALUES ('$suname','$pwd','$email','$hash');");
@@ -43,8 +43,8 @@ if($signup){
 	}
 }else{
 	$uname=$_POST["?uname"];
-	$result=mysqli_querry($con,"SELECT * FROM `UserData` WHERE `Username`=".$uname);
-	if(!$result){
+	$result=mysqli_querry($con,"SELECT * FROM `UserData` WHERE `Username`='".$uname."'");
+	if($result==FALSE){
 		error("Wrong Username");
 	}else{ 
 	$row=mysqli_fetch_array($result);
