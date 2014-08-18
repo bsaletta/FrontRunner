@@ -1,3 +1,10 @@
+<?php 
+if(!isset($_SESSION["exists"])){
+	session_start();
+	$_SESSION["exists"]=true; 	
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,36 +24,36 @@
         </ul>
     <div id="userPanel">
     <a onClick="hideLogin()" class="closeWindowX">X</a>
-        <form id="login">
+        <form id="login" action="user.php" method="post">
         <table>
         <tr>
-            <td>Username:</td><td><input type="textbox"></td>
+            <td>Username:</td><td><input type="textbox" name="uname"></td>
         </tr>
         <tr>
-            <td>Password:</td><td><input type="password"></td>
+            <td>Password:</td><td><input type="password" name="pwd"></td>
         </tr>
         </table>
         <input type="submit" value="Login"> <a onClick="toggleSignUp()" style="text-align:right">Sign Up</a>
         </form>
        
-        <form id="signup">
+        <form action="user.php" method="post" id="signup">
         <hr>
         <table>
             <tr>
                 <td>Username:</td>
-                <td><input type="textbox"></td>
+                <td><input type="textbox" name="suname"></td>
             </tr>
             <tr>
                 <td>E-mail:</td>
-                <td><input type="email"></td>
+                <td><input type="email" name="email"></td>
             </tr>
             <tr>
                 <td>Password:</td>
-                <td><input type="password"></td>
+                <td><input type="password" name="sup1"></td>
             </tr>
             <tr>
                 <td>Verify Password:</td>
-                <td><input type="password"></td>
+                <td><input type="password" name="sup2"></td>
             </tr>
         </table>
             <input type="submit" value="Sign Up"><br>
