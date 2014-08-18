@@ -1,4 +1,4 @@
-document.getElementById("jsCheck").innerHTML="<i>Javascript Loaded</i>"
+document.getElementById("jsCheck").innerHTML="<i>Javascript Loaded</i>";
 function linkColorChange(e){
     e.style.backgroundColor="LightBlue";
 }

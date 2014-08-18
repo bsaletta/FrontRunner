@@ -63,7 +63,7 @@ if(!isset($_SESSION["exists"])){
         <p> Welcome to FrontRunner projects, this is a place for me to brain dump all of the ideas that I have on to you poor unsuspecting people. Thanks for putting up with me!. By the way this is the boddy section of the site and this text is mainly here so I have something kinda long, but not like too long for formatting purposes. So all of you aformentioned people will not actually be able to read thes wonderful words that I am writing!. There, I think thats just about long enough for my current purposes. Enjoy and I hope you never read this!</p>
     </div>
     <div id="footer">
-    <i>This website was created by Ben Saletta, if you get inspiration from any ideas on this site and end up making a fortune, all I ask is that you mention where you got the idea</i>
+    <i>Synched This website was created by Ben Saletta, if you get inspiration from any ideas on this site and end up making a fortune, all I ask is that you mention where you got the idea</i>
     <p id="jsCheck"><b>Java Script Disabled</b></p>
     </div>
         <script type="text/javascript" src="mainscript.js"></script>
