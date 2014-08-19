@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+<title>Test Project</title>
+<summary>This is a sample project created so that I can understand the complex innerworkings of the xml code</summary>
+<contents>
+	<drawing>
+		<path> /Projects/testproject/drawing.png</path>
+		<name> Test Drawing</name>
+	</drawing>
+</contents>
+</project>
