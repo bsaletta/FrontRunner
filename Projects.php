@@ -26,18 +26,18 @@
 			if(mysqli_connect_errno()){
 				echo "Failed to connect to MySQL ".mysqli_connect_error();
 			}
-			$request=mysqli_query($link,"SELECT * FROM `ProjectOverview`");
-			if(!$request){
+			$request=mysqli_query($link,"SELECT * FROM `ProjectOverview` WHERE 1");
+			if($request===FALSE){
 				echo "<table>";
 				while($row=mysqli_fetch_array($result)){
-					$xml=simplexml_load_file($row['path']."overview.xml");
+					$xml=simplexml_load_file($row['Path']."overview.xml");
 					$title=$xml->title;
 					$summary=$xml->summary;
 					echo '<tr><td>'.$title.'</td></td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
 			}
 				echo '</table>';
 		}else{
-			echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!</h1>";
+			echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!".$request."</h1>";
 		}
 	}
     ?>    
