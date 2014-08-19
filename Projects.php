@@ -29,7 +29,8 @@
 			}
 			echo "linked; ";
 			$request=mysqli_query($link,"SELECT * FROM `ProjectOverview` WHERE 1");
-			if($request===FALSE){
+			echo "queried!";
+			if($request!=FALSE){
 				echo "<table>";
 				while($row=mysqli_fetch_array($result)){
 					echo "loading".$row['Path']."overview.xml";
