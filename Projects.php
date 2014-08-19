@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+$root=pathinfo($_SERVER['SCRIPT_FILENAME']);
+define ('BASE_FOLDER', basename($root['dirname']));
+define ('SITE_ROOT',    realpath(dirname(__FILE__)));
+define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
+?>
 <html>
     <head>
         <title>FrontRunner Projects</title>
@@ -22,23 +28,19 @@
     <div id="body">
     <?php
     if($_GET["Project"]==""){
-    	echo "not get; "; 
     		$link=mysqli_connect("localhost","root","mfd-2hd","Projects");
 			if(mysqli_connect_errno()){
 				echo "Failed to connect to MySQL ".mysqli_connect_error();
 			}
-			echo "linked; ";
-			$request=mysqli_query($link,"SELECT * FROM `ProjectOverview` WHERE 1");
-			echo "queried!";
-			if($request!=FALSE){
-				echo "<table>";
+			$result=mysqli_query($link,"SELECT * FROM `ProjectOverview` WHERE 1");
+			if($result){
+				echo "<table border=1px><th>Name</th><th>Summary</th><th>Views</th>";
 				while($row=mysqli_fetch_array($result)){
-					echo "loading".$row['Path']."overview.xml";
-					$xml=simplexml_load_file($row['Path']."overview.xml");
+					$xml=simplexml_load_file(SITE_ROOT.$row['Path']."overview.xml");
 					if($xml!=FALSE){
 					$title=$xml->title;
 					$summary=$xml->summary;
-					echo '<tr><td>'.$title.'</td></td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
+					echo '<tr><td>'.$title.'</td><td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
 					}else echo "couldn't open file";
 				echo '</table>';
 			}
