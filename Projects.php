@@ -21,21 +21,26 @@
         </ul>
     <div id="body">
     <?php
-    if($_GET["Project"]==""){ 
+    if($_GET["Project"]==""){
+    	echo "not get; "; 
     		$link=mysqli_connect("localhost","root","mfd-2hd","Projects");
 			if(mysqli_connect_errno()){
 				echo "Failed to connect to MySQL ".mysqli_connect_error();
 			}
+			echo "linked; ";
 			$request=mysqli_query($link,"SELECT * FROM `ProjectOverview` WHERE 1");
 			if($request===FALSE){
 				echo "<table>";
 				while($row=mysqli_fetch_array($result)){
+					echo "loading".$row['Path']."overview.xml";
 					$xml=simplexml_load_file($row['Path']."overview.xml");
+					if($xml!=FALSE){
 					$title=$xml->title;
 					$summary=$xml->summary;
 					echo '<tr><td>'.$title.'</td></td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
-			}
+					}else echo "couldn't open file";
 				echo '</table>';
+			}
 		}else{
 			echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!".$request."</h1>";
 		}
