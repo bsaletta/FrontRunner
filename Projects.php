@@ -32,6 +32,8 @@
 			echo "queried!";
 			if($request!=FALSE){
 				echo "<table>";
+				$row=mysqli_fetch_array($result);
+				echo $row;
 				while($row=mysqli_fetch_array($result)){
 					echo "loading".$row['Path']."overview.xml";
 					$xml=simplexml_load_file($row['Path']."overview.xml");
