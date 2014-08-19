@@ -2,8 +2,7 @@
  if(!isset($_SERVER['PHP_AUTH_USER'])){
  	header("WWW-Authenticate: Basic realm='This is a Private admin page'");
 	header('HTTP/1.0 401 Unauthorized');
-	//TODO: get a real URL for the homepage indstead of google
-	header("Location:http://google.com");
+	echo "<a href='index.php'>please return to the main page</a>";
 	exit;
  }else{
  	$link=mysqli_connect("localhost","root","mfd-2hd","Users");
@@ -16,7 +15,7 @@
 		}else{
 			$row=mysqli_fetch_array($result);
 			if($row['Password']==$_SERVER['PHP_AUTH_PW']){
-				echo "welcome!";
+				
 			}else{
 				header("Location:http://google.com");
 			}
@@ -30,9 +29,22 @@
 <html>
 	<head>
 		<title>Add or Adjust a Project</title>
+		<link rel="stylesheet" href="add.css">
 	</head>
 	<body>
-		No content yet.
+		<div id="container">
+			<div id="leftPanel">
+				<ul>
+					<li><span class="selector">Create new post</span></li>
+					<li><span class="selector">Upload new file</span></li>
+					<li><span class="selector">Create new project</span></li>
+				</ul>
+			</div>
+			<div id="body">
+						No content yet.
+			</div>
+		</div>
+		
 		<!-- TODO: add functionality, make this a place to update change or do what ever to projects
 			Require user verification and all of that good stuff too please thanks!-->
 	</body>

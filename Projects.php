@@ -27,11 +27,12 @@ define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
         </ul>
     <div id="body">
     <?php
-    if($_GET["Project"]==""){
-    		$link=mysqli_connect("localhost","root","mfd-2hd","Projects");
+    $link=mysqli_connect("localhost","root","mfd-2hd","Projects");
 			if(mysqli_connect_errno()){
 				echo "Failed to connect to MySQL ".mysqli_connect_error();
 			}
+    if($_GET["Project"]==""){
+    		
 			$result=mysqli_query($link,"SELECT * FROM `ProjectOverview` WHERE 1");
 			if($result){
 				echo "<table border=1px><th>Name</th><th>Summary</th><th>Views</th>";
@@ -40,14 +41,33 @@ define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
 					if($xml!=FALSE){
 					$title=$xml->title;
 					$summary=$xml->summary;
-					echo '<tr><td>'.$title.'</td><td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
+					echo "<tr><td><a href='Projects.php?Project=".$row['Name'].">".$title.'</a></td><td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
 					}else echo "couldn't open file";
 				echo '</table>';
 			}
 		}else{
-			echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!".$request."</h1>";
+			echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!".print_r($result)."</h1>";
 		}
-	}
+	}else{
+		$project=htmlspecialchars($_GET("Project"));
+			if($project!=""){
+				$result=mysqli_query($link,"SELECT * FROM `ProjectData` WHERE `Name`=".$project);
+				if($result){
+					$row=mysqli_fetch_array($result);
+					$xml=simplexml_load_file(SITE_ROOT.$row['Path']."overview.xml");
+					if($xml!=FALSE){
+					$title=$xml->title;
+					$summary=$xml->summary;
+					$contents=$xml->contents;
+					print_r($contents);
+					echo "<table border=1px>
+						<tr><td></td><td><b>".$title."</b></td><td></td></tr>
+						<tr><td><ul><li></li></ul></td>
+						<td></td><td></td></tr>
+					</table>";
+				}
+			}
+		}
     ?>    
     </div>
     <div id="footer">

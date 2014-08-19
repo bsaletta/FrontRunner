@@ -9,10 +9,10 @@ if($_POST["?uname"]=="" || $_POST["pwd"]==""){
 	$signup=false;
 }
 if($signup===TRUE){
-	$suname=$_POST["?suname"];
-	$email=$_POST["email"];
+	$suname=testEnteries($_POST["?suname"]);
+	$email=testEnteries($_POST["email"]);
 	if($_POST["sup1"]==$_POST["sup2"]){
-		$pwd=$_POST["sup1"];
+		$pwd=testEnteries($_POST["sup1"]);
 	}else{
 		error("Missmached Passwords");
 	}
@@ -37,7 +37,7 @@ if($signup===TRUE){
 		error("Username already exists.");
 	}
 }else{
-	$uname=$_POST["?uname"];
+	$uname=testEnteries($_POST["?uname"]);
 	$result=mysqli_query($con,"SELECT * FROM `UserData` WHERE `Username`='".$uname."'");
 	if($result==FALSE){
 		error("Wrong Username");
@@ -46,9 +46,10 @@ if($signup===TRUE){
 	if($row["Verified"]==0){
 		error("Unverified Email");
 	}else{
-		if($row["Password"]==$_POST["pwd"]){
+		if($row["Password"]==testEnteries($_POST["pwd"])){
 			$expire=time()+60*60*24;
 			setcookie("User",$uname,$expire);
+			exit;
 		}else{
 			if(isset($_SESSION["Attempts"])){
 				$_SESSION["Attempts"]+=1;
@@ -58,6 +59,12 @@ if($signup===TRUE){
 		}
 	}
 	}
+}
+function testEnteries($data){
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
 function error($error){
 	echo $error;
