@@ -10,3 +10,4 @@ TO DO:
 4. Pretty email loaded from file
 5. XML post update format
 6. Make it look prettier
+7. Create logo and banner
