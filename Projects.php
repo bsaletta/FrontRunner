@@ -1,10 +1,3 @@
-<?php 
-if(!isset($_SESSION["exists"])){
-	session_start();
-	$_SESSION["exists"]=true; 	
-}
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,6 +11,7 @@ if(!isset($_SESSION["exists"])){
       <span onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)" id="loginSignup">
       	<?php if(isset($_COOKIE['User'])){
         	echo "Logged in as ".$_COOKIE['User'];
+		}
           ?> </span>
     </div>
         <ul id="navigationBar">
@@ -28,19 +22,23 @@ if(!isset($_SESSION["exists"])){
     <div id="body">
     <?php
     if($_GET["Project"]==""){ 
-    	$link=mysqli_connect("localhost","root","mfd-2hd","Projects");
-		if(mysqli_connect_errno()){
-			echo "Failed to connect to MySQL ".mysqli_connect_error();
+    		$link=mysqli_connect("localhost","root","mfd-2hd","Projects");
+			if(mysqli_connect_errno()){
+				echo "Failed to connect to MySQL ".mysqli_connect_error();
+			}
+			$request=mysqli_query($link,"SELECT * From `ProjectOverview");
+			if(!$request){
+				echo "<table>";
+				while($row=mysqli_fetch_array($result)){
+					$xml=simplexml_load_file($row['path']."overview.xml");
+					$title=$xml->title;
+					$summary=$xml->summary;
+					echo '<tr><td>'.$title.'</td></td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
+			}
+				echo '</table>';
+		}else{
+			echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!</h1>";
 		}
-		$request=mysqli_query($link,"SELECT * From `ProjectOverview");
-		if(!$request){
-			echo "<table>";
-			while($row=mysqli_fetch_array($result)){
-				echo '<tr><td>'.$row['Name'].'</td></td>'.'TODO: get synopsis here'.'</td></tr>';
-		}
-			echo '</table>';
-	}else{
-		echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!</h1>";
 	}
     ?>    
     </div>
