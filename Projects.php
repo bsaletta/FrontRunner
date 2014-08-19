@@ -68,6 +68,7 @@ define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
 				}
 			}
 		}
+	}
     ?>    
     </div>
     <div id="footer">
