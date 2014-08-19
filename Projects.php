@@ -22,7 +22,7 @@ if(!isset($_SESSION["exists"])){
     </div>
         <ul id="navigationBar">
             <li><a class="navLink" href="index.php" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">Home</a></li>
-            <li><a class="navLink" href="projects.php" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">Projects</a></li>
+            <li><a class="navLink" href="Projects.php" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">Projects</a></li>
             <li><a class="navLink" href="" onMouseOver="linkColorChange(this)" onMouseOut="linkColorChangeBack(this)">About</a></li>
         </ul>
     <div id="body">
@@ -32,10 +32,15 @@ if(!isset($_SESSION["exists"])){
 		if(mysqli_connect_errno()){
 			echo "Failed to connect to MySQL ".mysqli_connect_error();
 		}
-		$request=mysqli_query($link,"SELECT `Name` From `ProjectOverview");
+		$request=mysqli_query($link,"SELECT * From `ProjectOverview");
 		if(!$request){
-				
+			echo "<table>";
+			while($row=mysqli_fetch_array($result)){
+				echo '<tr><td>'.$row['Name'].'</td></td>'.'TODO: get synopsis here'.'</td></tr>';
 		}
+			echo '</table>';
+	}else{
+		echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!</h1>";
 	}
     ?>    
     </div>
