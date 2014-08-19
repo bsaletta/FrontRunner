@@ -26,7 +26,7 @@
 			if(mysqli_connect_errno()){
 				echo "Failed to connect to MySQL ".mysqli_connect_error();
 			}
-			$request=mysqli_query($link,"SELECT * From `ProjectOverview");
+			$request=mysqli_query($link,"SELECT * FROM `ProjectOverview`");
 			if(!$request){
 				echo "<table>";
 				while($row=mysqli_fetch_array($result)){
