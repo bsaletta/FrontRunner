@@ -41,7 +41,7 @@ define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
 					if($xml!=FALSE){
 					$title=$xml->title;
 					$summary=$xml->summary;
-					echo "<tr><td><a href='Projects.php?Project=".$row['Name'].">".$title.'</a></td><td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
+					echo "<tr><td><a href='Projects.php?Project=".$row['Name']."'>".$title.'</a></td><td>'.$summary.'</td><td>'.$row['Views'].'</td></tr>';
 					}else echo "couldn't open file";
 				echo '</table>';
 			}
@@ -49,9 +49,9 @@ define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
 			echo "<h1>YOU DONE GOOFED!!! NO PROJECTS!!".print_r($result)."</h1>";
 		}
 	}else{
-		$project=htmlspecialchars($_GET("Project"));
+		$project=$_GET["Project"];
 			if($project!=""){
-				$result=mysqli_query($link,"SELECT * FROM `ProjectData` WHERE `Name`=".$project);
+				$result=mysqli_query($link,"SELECT * FROM `ProjectOverview` WHERE `Name`='".$project."'");
 				if($result){
 					$row=mysqli_fetch_array($result);
 					$xml=simplexml_load_file(SITE_ROOT.$row['Path']."overview.xml");
@@ -59,14 +59,23 @@ define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
 					$title=$xml->title;
 					$summary=$xml->summary;
 					$contents=$xml->contents;
-					print_r($contents);
+					foreach($contents->children() as $kind => $child){
+			//			print_r($kind);
+			//			print_r($child);
+						echo "<li>".$kind.": <span onclick='loadResource(`".BASE_PATH.$child->path."`)'>".$child->name."</span></li>";
+					}
+			//		print_r($contents);
 					echo "<table border=1px>
 						<tr><td></td><td><b>".$title."</b></td><td></td></tr>
 						<tr><td><ul><li></li></ul></td>
 						<td></td><td></td></tr>
 					</table>";
 				}
+			}else{
+				echo "False Result!";
 			}
+		}else{
+		
 		}
 	}
     ?>    
