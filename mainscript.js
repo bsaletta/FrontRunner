@@ -84,6 +84,6 @@ function error(issue){
 }
 function loadResource(path,element){
 	if(element.id="drawing"){
-		document.getElementById('body').innerHTML+="<img src='"+path+"'>";
+		document.getElementById('content').innerHTML+="<img src='"+path+"'>";
 	}
 }
