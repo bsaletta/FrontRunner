@@ -79,6 +79,11 @@ function error(issue){
 	if(issue!=""){
 		element.innerHTML+=new Date().getTime()+"   "+issue+"<br>";
 	}else{
-		element.innerHTML+=new Date().getTime()+"   "+"Blank Problem"+"<br>";
+		//element.innerHTML+=new Date().getTime()+"   "+"Blank Problem"+"<br>";
+	}
+}
+function loadResource(path,element){
+	if(element.id="drawing"){
+		document.getElementById('body').innerHTML+="<img src='"+path+"'>";
 	}
 }

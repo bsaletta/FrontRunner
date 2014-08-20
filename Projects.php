@@ -59,15 +59,13 @@ define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
 					$title=$xml->title;
 					$summary=$xml->summary;
 					$contents=$xml->contents;
-					foreach($contents->children() as $kind => $child){
-			//			print_r($kind);
-			//			print_r($child);
-						echo "<li>".$kind.": <span onclick='loadResource(`".BASE_PATH.$child->path."`)'>".$child->name."</span></li>";
-					}
-			//		print_r($contents);
 					echo "<table border=1px>
 						<tr><td></td><td><b>".$title."</b></td><td></td></tr>
-						<tr><td><ul><li></li></ul></td>
+						<tr><td><ul>";
+						foreach($contents->children() as $kind => $child){
+						echo "<li>".$kind.": <span id='".$kind."'onclick='loadResource(`".SITE_ROOT.$child->path."`,this)'>".$child->name."</span></li>";
+						}
+					echo "</ul></td>
 						<td></td><td></td></tr>
 					</table>";
 				}
