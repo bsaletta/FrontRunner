@@ -63,10 +63,10 @@ define ('SITE_URL',    'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
 						<tr><td></td><td><b>".$title."</b></td><td></td></tr>
 						<tr><td><ul>";
 						foreach($contents->children() as $kind => $child){
-						echo "<li>".$kind.": <span id='".$kind."'onclick='loadResource(`".SITE_ROOT.$child->path."`,this)'>".$child->name."</span></li>";
+						echo "<li>".$kind.": <span id='".$kind."'onclick=\"loadResource('".SITE_ROOT.$child->path."',this)\">".$child->name."</span></li>";
 						}
 					echo "</ul></td>
-						<td></td><td></td></tr>
+						<td></td>Here will go action commands i.e donate or comment or suggest etc<td></td></tr>
 					</table>";
 				}
 			}else{
